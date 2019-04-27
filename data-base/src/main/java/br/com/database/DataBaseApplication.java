@@ -28,6 +28,8 @@ public class DataBaseApplication implements CommandLineRunner {
 		long stop = System.currentTimeMillis();
 		
 		log.info("Tempo Total: " + (stop - start) + " ms.");
+				
+		log.info("find person by id -> {}", this.personJdbcDao.findById(1003));
 	}
 
 }
