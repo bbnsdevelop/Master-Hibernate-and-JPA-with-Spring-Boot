@@ -1,5 +1,7 @@
 package br.com.database;
 
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,10 @@ public class DataBaseApplication implements CommandLineRunner {
 		log.info("Tempo Total: " + (stop - start) + " ms.");
 				
 		log.info("find person by id -> {}", this.personJdbcDao.findById(1003));
+		
+		log.info("delete person by number -> {}", this.personJdbcDao.deleteById(1003));
+		log.info("delete person by number -> {}", this.personJdbcDao.deleteById(1003));
+		//log.info("delete sum person by id's -> {}", this.personJdbcDao.deleteMorePersonByIds(Arrays.asList(1002, 1004)));
 	}
 
 }
