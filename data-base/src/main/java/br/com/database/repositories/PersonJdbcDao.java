@@ -1,5 +1,6 @@
 package br.com.database.repositories;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,14 @@ public class PersonJdbcDao {
 	public int deleteMorePersonByIds(List<Integer> ids){
 		String query = "delete from person where id in(?)";
 		return jdbcTemplate.update(query,ids.toArray());
+	}
+	public int insert(Person person){
+		String query = "INSERT INTO person (id, name, location, birth_date) VALUES (?, ?, ?, ?)";
+		return jdbcTemplate.update(query, new Object[] {person.getId(), person.getName(), person.getLocation(), new Timestamp(person.getBirthDate().getTime())});
+	}
+	public int update(Person person){
+		String query = "update person set name =?, location=?, birth_date=? where id =?";
+		return jdbcTemplate.update(query, new Object[] {person.getName(), person.getLocation(), new Timestamp(person.getBirthDate().getTime()), person.getId()});
 	}
 
 }
