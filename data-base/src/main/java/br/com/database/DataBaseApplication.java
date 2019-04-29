@@ -29,10 +29,12 @@ public class DataBaseApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		long start = System.currentTimeMillis();
 		log.info("PersonJdbcDao all users -> {} ", personJdbcDao.findAll());
-		long stop = System.currentTimeMillis();
+		log.info("PersonJdbcDao all users with rowMapper -> {} ", personJdbcDao.findAllRowMapper());
 		
 				
 		log.info("find person by id -> {}", this.personJdbcDao.findById(1003));
+		log.info("find person by id with rowMapper -> {}", this.personJdbcDao.findByIdRowMapper(1003));
+		
 		
 		log.info("delete person by number -> {}", this.personJdbcDao.deleteById(1003));
 		log.info("delete person by number -> {}", this.personJdbcDao.deleteById(1003));
@@ -41,6 +43,7 @@ public class DataBaseApplication implements CommandLineRunner {
 		log.info("update person -> {}", this.personJdbcDao.update(new Person(1005, "Maria das flores", "Rio de Janeiro", new Date(Calendar.getInstance().getTime().getTime()))));
 		
 		// time
+		long stop = System.currentTimeMillis();
 		log.info("Tempo Total: " + (stop - start) + " ms.");
 	}
 

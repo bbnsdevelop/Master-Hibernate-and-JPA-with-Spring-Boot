@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import br.com.database.entities.Person;
+import br.com.database.mapper.PersonRowMapper;
 
 @Repository
 public class PersonJdbcDao {
@@ -21,9 +22,19 @@ public class PersonJdbcDao {
 		return jdbcTemplate.query(query, new BeanPropertyRowMapper<Person>(Person.class));
 	}
 	
+	public List<Person> findAllRowMapper(){
+		String query = "select * from person";
+		return jdbcTemplate.query(query, new PersonRowMapper());
+	}
+	
 	public Person findById(int id){
 		String query = "select * from person where id=?";
 		return jdbcTemplate.queryForObject(query,new Object[] {id} ,new BeanPropertyRowMapper<Person>(Person.class));
+	}
+	
+	public Person findByIdRowMapper(int id){
+		String query = "select * from person where id=?";
+		return jdbcTemplate.queryForObject(query,new Object[] {id} , new PersonRowMapper());
 	}
 	
 	public int deleteById(int id){
