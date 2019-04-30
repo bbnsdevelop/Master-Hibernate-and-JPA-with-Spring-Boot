@@ -12,15 +12,24 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.database.entities.Person;
 import br.com.database.repositories.PersonJdbcDao;
+import br.com.database.repositories.namedQuery.PersonJpaRepository;
+import br.com.database.service.PersonService;
 
 @SpringBootApplication
 public class DataBaseApplication implements CommandLineRunner {
 	
 	private Logger log = LoggerFactory.getLogger(DataBaseApplication.class);
 	
+	
 	@Autowired
 	private PersonJdbcDao personJdbcDao;
 
+	@Autowired
+	private PersonService personService;
+	
+	@Autowired
+	private PersonJpaRepository PersonJpaRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(DataBaseApplication.class, args);
 	}
@@ -42,6 +51,11 @@ public class DataBaseApplication implements CommandLineRunner {
 		log.info("insert person -> {}", this.personJdbcDao.insert(new Person(1005, "Maria", "Rio de Janeiro", new Date(Calendar.getInstance().getTime().getTime()))));
 		log.info("update person -> {}", this.personJdbcDao.update(new Person(1005, "Maria das flores", "Rio de Janeiro", new Date(Calendar.getInstance().getTime().getTime()))));
 		
+		log.info("find by id jpa -> {} -> {}", 1001, personService.findById(1001));
+		log.info("create person  jpa-> {}", this.personService.create(new Person("Maria", "Rio de Janeiro", new Date(Calendar.getInstance().getTime().getTime()))));
+		log.info("find all person jpa -> {} ", personService.findAll());
+		
+		log.info("find all person namedQuery -> {}", PersonJpaRepository.findAllPerson());
 		// time
 		long stop = System.currentTimeMillis();
 		log.info("Tempo Total: " + (stop - start) + " ms.");
