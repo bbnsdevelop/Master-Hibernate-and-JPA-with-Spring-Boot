@@ -37,8 +37,6 @@ public class DataBaseApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		long start = System.currentTimeMillis();
-		log.info("PersonJdbcDao all users -> {} ", personJdbcDao.findAll());
-		log.info("PersonJdbcDao all users with rowMapper -> {} ", personJdbcDao.findAllRowMapper());
 		
 				
 		log.info("find person by id -> {}", this.personJdbcDao.findById(1003));
@@ -53,9 +51,29 @@ public class DataBaseApplication implements CommandLineRunner {
 		
 		log.info("find by id jpa -> {} -> {}", 1001, personService.findById(1001));
 		log.info("create person  jpa-> {}", this.personService.create(new Person("Maria", "Rio de Janeiro", new Date(Calendar.getInstance().getTime().getTime()))));
-		log.info("find all person jpa -> {} ", personService.findAll());
 		
+		
+		long start1 = System.currentTimeMillis();
+		log.info("PersonJdbcDao all users -> {} ", personJdbcDao.findAll());
+		long stop1 = System.currentTimeMillis();
+		log.info("Tempo Total JDBCTEMPLATE: " + (stop1 - start1) + " ms.");
+		
+		long start2 = System.currentTimeMillis();
+		log.info("PersonJdbcDao all users with rowMapper -> {} ", personJdbcDao.findAllRowMapper());
+		long stop2 = System.currentTimeMillis();
+		log.info("Tempo Total JDBCTEMPLATE ROWMAPPER : " + (stop2 - start2) + " ms.");
+		
+		long start3 = System.currentTimeMillis();
+		log.info("find all person jpa -> {} ", personService.findAll());
+		long stop3 = System.currentTimeMillis();
+		log.info("Tempo Total JPA: " + (stop3 - start3) + " ms.");
+		
+		long start4 = System.currentTimeMillis();
 		log.info("find all person namedQuery -> {}", PersonJpaRepository.findAllPerson());
+		long stop4 = System.currentTimeMillis();
+		log.info("Tempo Total named query: " + (stop4 - start4) + " ms.");
+		
+		
 		// time
 		long stop = System.currentTimeMillis();
 		log.info("Tempo Total: " + (stop - start) + " ms.");
