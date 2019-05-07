@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
 @NamedQuery(name="find_all_person", query="select p from Person p")
+@Table(name="person")
 public class Person {
 	
 	@Id

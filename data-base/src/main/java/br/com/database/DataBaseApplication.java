@@ -74,6 +74,9 @@ public class DataBaseApplication implements CommandLineRunner {
 		log.info("Tempo Total named query: " + (stop4 - start4) + " ms.");
 		
 		
+		
+		personService.findByIdNativiQuery(1005);
+		
 		// time
 		long stop = System.currentTimeMillis();
 		log.info("Tempo Total: " + (stop - start) + " ms.");

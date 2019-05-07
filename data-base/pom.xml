@@ -8,7 +8,7 @@
 	<artifactId>data-base</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>data-base</name>
-	<description>setting up a project with JDBC, JPA, H2 and Web dependency</description>
+	<description>setting up a project with JDBC, JPA, H2 and Web dependency </description>
 
 
 	<parent>

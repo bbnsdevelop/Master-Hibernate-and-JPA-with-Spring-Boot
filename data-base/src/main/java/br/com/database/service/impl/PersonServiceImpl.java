@@ -1,5 +1,6 @@
 package br.com.database.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -47,6 +48,12 @@ public class PersonServiceImpl implements PersonService{
 	public void deleteById(int id) {
 		logger.info("delete person jpa by id -> {}", id);
 		personRepository.deleteById(id);		
+	}
+
+	@Override
+	public List<Person> findByIdNativiQuery(int id) {
+		logger.info("find person jpa by id -> {}", id);
+		return personRepository.findByIdNativiQuery(Arrays.asList(id, 1004));
 	}
 	
 	

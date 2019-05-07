@@ -11,4 +11,5 @@ public interface PersonService {
 	Person create(Person person);
 	Person update(Person person);
 	void deleteById(int id);
+	List<Person> findByIdNativiQuery(int id);
 }
