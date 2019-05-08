@@ -37,8 +37,7 @@ public class DataBaseApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		long start = System.currentTimeMillis();
-		
-				
+						
 		log.info("find person by id -> {}", this.personJdbcDao.findById(1003));
 		log.info("find person by id with rowMapper -> {}", this.personJdbcDao.findByIdRowMapper(1003));
 		
